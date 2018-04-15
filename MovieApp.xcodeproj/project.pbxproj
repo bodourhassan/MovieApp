@@ -576,6 +576,7 @@
 				D43DE48020815F6B000F86C9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D43DE48120815F6B000F86C9 /* Build configuration list for PBXNativeTarget "MovieAppTests" */ = {
 			isa = XCConfigurationList;
@@ -584,6 +585,7 @@
 				D43DE48320815F6B000F86C9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D43DE48420815F6B000F86C9 /* Build configuration list for PBXNativeTarget "MovieAppUITests" */ = {
 			isa = XCConfigurationList;
@@ -592,6 +594,7 @@
 				D43DE48620815F6B000F86C9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
