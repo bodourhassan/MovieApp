@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		550B7D88D627E6DE2F755E9D /* Pods_MovieApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22C7E37CF91882AA63C94C82 /* Pods_MovieApp.framework */; };
+		D43BDA5C2084C582003E2F9A /* video-player-7.png in Resources */ = {isa = PBXBuildFile; fileRef = D43BDA5B2084C582003E2F9A /* video-player-7.png */; };
+		D43BDA5E2084C5B5003E2F9A /* heart-7.png in Resources */ = {isa = PBXBuildFile; fileRef = D43BDA5D2084C5B5003E2F9A /* heart-7.png */; };
+		D43BDA602084C732003E2F9A /* film-clap-board.png in Resources */ = {isa = PBXBuildFile; fileRef = D43BDA5F2084C732003E2F9A /* film-clap-board.png */; };
+		D43BDA622084C78A003E2F9A /* love.png in Resources */ = {isa = PBXBuildFile; fileRef = D43BDA612084C78A003E2F9A /* love.png */; };
+		D43BDA662084D639003E2F9A /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43BDA652084D639003E2F9A /* Home.swift */; };
+		D43BDA682084DF30003E2F9A /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43BDA672084DF30003E2F9A /* Favorite.swift */; };
 		D43DE45720815F66000F86C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43DE45620815F66000F86C9 /* AppDelegate.swift */; };
 		D43DE45920815F67000F86C9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43DE45820815F67000F86C9 /* ViewController.swift */; };
 		D43DE45C20815F67000F86C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D43DE45A20815F67000F86C9 /* Main.storyboard */; };
@@ -16,6 +22,10 @@
 		D43DE46420815F68000F86C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D43DE46220815F68000F86C9 /* LaunchScreen.storyboard */; };
 		D43DE46F20815F69000F86C9 /* MovieAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43DE46E20815F69000F86C9 /* MovieAppTests.swift */; };
 		D43DE47A20815F6A000F86C9 /* MovieAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43DE47920815F6A000F86C9 /* MovieAppUITests.swift */; };
+		D46CB4A42083FC6000D7E95F /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D46CB4A32083FC6000D7E95F /* Alamofire.framework */; };
+		D46CB4A62083FC6700D7E95F /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D46CB4A52083FC6700D7E95F /* SDWebImage.framework */; };
+		D46CB4A82083FCF500D7E95F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D46CB4A72083FCF500D7E95F /* Foundation.framework */; };
+		D46CB4AA2083FD0700D7E95F /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D46CB4A92083FD0700D7E95F /* ImageIO.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +49,12 @@
 		22C7E37CF91882AA63C94C82 /* Pods_MovieApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		55C1810D1FF141D6D7EDCD01 /* Pods-MovieApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-MovieApp/Pods-MovieApp.release.xcconfig"; sourceTree = "<group>"; };
 		8E1E3B95ABE2EA5B95A514D1 /* Pods-MovieApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MovieApp/Pods-MovieApp.debug.xcconfig"; sourceTree = "<group>"; };
+		D43BDA5B2084C582003E2F9A /* video-player-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video-player-7.png"; sourceTree = "<group>"; };
+		D43BDA5D2084C5B5003E2F9A /* heart-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-7.png"; sourceTree = "<group>"; };
+		D43BDA5F2084C732003E2F9A /* film-clap-board.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "film-clap-board.png"; sourceTree = "<group>"; };
+		D43BDA612084C78A003E2F9A /* love.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = love.png; sourceTree = "<group>"; };
+		D43BDA652084D639003E2F9A /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		D43BDA672084DF30003E2F9A /* Favorite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		D43DE45320815F66000F86C9 /* MovieApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D43DE45620815F66000F86C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D43DE45820815F67000F86C9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -53,6 +69,10 @@
 		D43DE47520815F6A000F86C9 /* MovieAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D43DE47920815F6A000F86C9 /* MovieAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieAppUITests.swift; sourceTree = "<group>"; };
 		D43DE47B20815F6B000F86C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D46CB4A32083FC6000D7E95F /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../Library/Developer/Xcode/DerivedData/MovieApp-bwobrlmgxnockwdvibrbuexqdyam/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
+		D46CB4A52083FC6700D7E95F /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = "../../Library/Developer/Xcode/DerivedData/MovieApp-bwobrlmgxnockwdvibrbuexqdyam/Build/Products/Debug-iphonesimulator/SDWebImage/SDWebImage.framework"; sourceTree = "<group>"; };
+		D46CB4A72083FCF500D7E95F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D46CB4A92083FD0700D7E95F /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +80,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D46CB4AA2083FD0700D7E95F /* ImageIO.framework in Frameworks */,
+				D46CB4A82083FCF500D7E95F /* Foundation.framework in Frameworks */,
+				D46CB4A62083FC6700D7E95F /* SDWebImage.framework in Frameworks */,
+				D46CB4A42083FC6000D7E95F /* Alamofire.framework in Frameworks */,
 				550B7D88D627E6DE2F755E9D /* Pods_MovieApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -93,14 +117,30 @@
 		94967A721B2AC0B3F791AF66 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D46CB4A92083FD0700D7E95F /* ImageIO.framework */,
+				D46CB4A72083FCF500D7E95F /* Foundation.framework */,
+				D46CB4A52083FC6700D7E95F /* SDWebImage.framework */,
+				D46CB4A32083FC6000D7E95F /* Alamofire.framework */,
 				22C7E37CF91882AA63C94C82 /* Pods_MovieApp.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D43BDA542084B488003E2F9A /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				D43BDA612084C78A003E2F9A /* love.png */,
+				D43BDA5F2084C732003E2F9A /* film-clap-board.png */,
+				D43BDA5D2084C5B5003E2F9A /* heart-7.png */,
+				D43BDA5B2084C582003E2F9A /* video-player-7.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		D43DE44A20815F65000F86C9 = {
 			isa = PBXGroup;
 			children = (
+				D43BDA542084B488003E2F9A /* Images */,
 				D43DE45520815F66000F86C9 /* MovieApp */,
 				D43DE46D20815F69000F86C9 /* MovieAppTests */,
 				D43DE47820815F6A000F86C9 /* MovieAppUITests */,
@@ -109,6 +149,9 @@
 				94967A721B2AC0B3F791AF66 /* Frameworks */,
 			);
 			sourceTree = "<group>";
+			tabWidth = 4;
+			usesTabs = 0;
+			wrapsLines = 1;
 		};
 		D43DE45420815F66000F86C9 /* Products */ = {
 			isa = PBXGroup;
@@ -130,6 +173,8 @@
 				D43DE46220815F68000F86C9 /* LaunchScreen.storyboard */,
 				D43DE46520815F69000F86C9 /* Info.plist */,
 				D43DE45D20815F67000F86C9 /* MovieApp.xcdatamodeld */,
+				D43BDA652084D639003E2F9A /* Home.swift */,
+				D43BDA672084DF30003E2F9A /* Favorite.swift */,
 			);
 			path = MovieApp;
 			sourceTree = "<group>";
@@ -262,7 +307,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D43DE46420815F68000F86C9 /* LaunchScreen.storyboard in Resources */,
+				D43BDA5E2084C5B5003E2F9A /* heart-7.png in Resources */,
+				D43BDA602084C732003E2F9A /* film-clap-board.png in Resources */,
 				D43DE46120815F68000F86C9 /* Assets.xcassets in Resources */,
+				D43BDA5C2084C582003E2F9A /* video-player-7.png in Resources */,
+				D43BDA622084C78A003E2F9A /* love.png in Resources */,
 				D43DE45C20815F67000F86C9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -329,8 +378,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D43BDA682084DF30003E2F9A /* Favorite.swift in Sources */,
 				D43DE45920815F67000F86C9 /* ViewController.swift in Sources */,
 				D43DE45720815F66000F86C9 /* AppDelegate.swift in Sources */,
+				D43BDA662084D639003E2F9A /* Home.swift in Sources */,
 				D43DE45F20815F68000F86C9 /* MovieApp.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -432,6 +483,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -473,6 +525,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -486,7 +539,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = MA.MovieApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -499,7 +552,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = MA.MovieApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};
