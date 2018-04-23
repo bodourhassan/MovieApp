@@ -7,23 +7,60 @@
 //
 
 import UIKit
+import CoreData
+import  SDWebImage
 
-private let reuseIdentifier = "Cell"
+private let reuseIdentifier = "cell2"
 
 class Favorite: UICollectionViewController {
-
+    var myfavorite = [FilmData]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        var moviesres : [NSManagedObject] = [NSManagedObject]()
+        
+        //1
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        //2
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        //3
+        let request = NSFetchRequest<NSManagedObject>(entityName: "FavoriteFilm")
+        
+        do{
+            try  moviesres =  managedContext.fetch(request)
+            for index in moviesres
+            {
+                let myMovieO = FilmData()
+                
+                myMovieO.FilmId=index.value(forKey:"id") as! Int
+                myMovieO.original_title=index.value(forKey: "originalTitle") as! String
+                myMovieO.poster_path=index.value(forKey: "posterImage") as! String
+                myMovieO.release_Date=index.value(forKey: "releaseDate") as!  String
+                myMovieO.vote_average=index.value(forKey: "voteAverage") as! Float
+                myMovieO.overview=index.value(forKey: "overview") as! String
+                myfavorite.append(myMovieO)
+                self.collectionView?.reloadData()
+                
+            }
+        }catch{
+            
+            print ("error in core Data")
+        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
-      //  self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+       // self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
     }
-
+    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        print("Display")
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -40,23 +77,37 @@ class Favorite: UICollectionViewController {
     */
 
     // MARK: UICollectionViewDataSource
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-         return 1
+
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        print("sec")
+        return 1
     }
 
 
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 4
+        print(myfavorite.count)
+        return myfavorite.count
     }
 
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: <#T##NSIndexPath#>) as UICollectionViewCell
-        var myimage = cell.viewWithTag(1) as! UIImageView
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        print("cell")
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+       let myimage2 = cell.viewWithTag(2) as! UIImageView
         // Configure the cell
-        myimage.image = UIImage.init(named: "love.png")
+        myimage2.sd_setImage(with: URL(string: myfavorite[indexPath.row].poster_path), placeholderImage:UIImage(named: "placeholder\(indexPath.row).png"))
         return cell
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "detail") as! DetailOfFilm
+        
+        vc.mySelectedFilm=myfavorite[indexPath.row]
+        navigationController?.pushViewController(vc,animated: true)
+    }
+
     // MARK: UICollectionViewDelegate
 
     /*
