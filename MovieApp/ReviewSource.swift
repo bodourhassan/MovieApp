@@ -58,14 +58,14 @@ class  ReviewSource :NSObject, UITableViewDataSource, UITableViewDelegate
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        print("section")
+        print("section222")
         self.getReview()
         print("get")
         return 1;
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("tttttt\(myreview.count)")
+        print("tttttt222\(myreview.count)")
         return myreview.count;
         // return 2;
     }
@@ -78,5 +78,8 @@ class  ReviewSource :NSObject, UITableViewDataSource, UITableViewDelegate
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       print("select")
+    }
     
 }

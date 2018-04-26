@@ -18,38 +18,7 @@ class Favorite: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var moviesres : [NSManagedObject] = [NSManagedObject]()
-        
-        //1
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        //2
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
-        //3
-        let request = NSFetchRequest<NSManagedObject>(entityName: "FavoriteFilm")
-        
-        do{
-            try  moviesres =  managedContext.fetch(request)
-            for index in moviesres
-            {
-                let myMovieO = FilmData()
-                
-                myMovieO.FilmId=index.value(forKey:"id") as! Int
-                myMovieO.original_title=index.value(forKey: "originalTitle") as! String
-                myMovieO.poster_path=index.value(forKey: "posterImage") as! String
-                myMovieO.release_Date=index.value(forKey: "releaseDate") as!  String
-                myMovieO.vote_average=index.value(forKey: "voteAverage") as! Float
-                myMovieO.overview=index.value(forKey: "overview") as! String
-                myfavorite.append(myMovieO)
-                self.collectionView?.reloadData()
-                
-            }
-        }catch{
-            
-            print ("error in core Data")
-        }
-
+       
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -64,6 +33,42 @@ class Favorite: UICollectionViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        var moviesres : [NSManagedObject] = [NSManagedObject]()
+        
+        //1
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        //2
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        //3
+        let request = NSFetchRequest<NSManagedObject>(entityName: "FavoriteFilm")
+        myfavorite.removeAll()
+        do{
+            try  moviesres =  managedContext.fetch(request)
+            for index in moviesres
+            {
+                let myMovieO = FilmData()
+                
+                myMovieO.FilmId=index.value(forKey:"id") as! Int
+                myMovieO.original_title=index.value(forKey: "originalTitle") as! String
+                myMovieO.poster_path=index.value(forKey: "posterImage") as! String
+                myMovieO.release_Date=index.value(forKey: "releaseDate") as!  String
+                myMovieO.vote_average=index.value(forKey: "voteAverage") as! Float
+                myMovieO.overview=index.value(forKey: "overview") as! String
+                
+                myfavorite.append(myMovieO)
+                self.collectionView?.reloadData()
+                
+            }
+        }catch{
+            
+            print ("error in core Data")
+        }
+
     }
 
     /*

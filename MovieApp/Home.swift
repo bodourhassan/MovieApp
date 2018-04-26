@@ -4,8 +4,6 @@
 //
 //  Created by shimaa on 7/30/1439 AH.
 //  Copyright © 1439 AH MovieAppOrganization. All rights reserved.
-//
-
 import UIKit
 import Alamofire
 import SDWebImage
@@ -193,8 +191,11 @@ class Home: UICollectionViewController ,MySortProtocol{
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+    
        let myimage = cell.viewWithTag(1) as! UIImageView
+        
        myimage.sd_setImage(with: URL(string: self.MyFilms[indexPath.row].poster_path), placeholderImage:UIImage(named: "placeholder\(indexPath.row).png"))
+    
         return cell
     }
 

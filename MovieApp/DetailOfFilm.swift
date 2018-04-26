@@ -18,8 +18,8 @@ import CoreData
 
 class DetailOfFilm: UITableViewController {
     var mySelectedFilm = FilmData()
-    var flag = 0
-    
+    //var flag = 0
+    var moviesres : [NSManagedObject] = [NSManagedObject]()
     @IBOutlet weak var myReviewTable: UITableView!
     @IBOutlet weak var myfavbutton: UIButton!
     @IBOutlet weak var mytable: UITableView!
@@ -49,10 +49,10 @@ class DetailOfFilm: UITableViewController {
             
         
 
-        if(flag == 0)
+        if sender.imageView?.image == UIImage.init(named: "EmptyHeart.png")
         {
           sender.setImage(UIImage.init(named: "FillHeart.png"), for: UIControlState.normal)
-            flag = 1
+            //flag = 1
             //add this movie to favorite
             
             let movieObject  = NSManagedObject(entity: entity!, insertInto: managedContext)
@@ -81,8 +81,35 @@ class DetailOfFilm: UITableViewController {
         }
         else{
            sender.setImage(UIImage.init(named: "EmptyHeart.png"), for: UIControlState.normal)
-            flag = 0
+           // flag = 0
             UserDefaults.standard.set("EmptyHeart.png", forKey: "favoriteimage\(mySelectedFilm.FilmId)")
+            
+            let request = NSFetchRequest<NSManagedObject>(entityName: "FavoriteFilm")
+            
+            do{
+                try  moviesres =  managedContext.fetch(request)
+                for index in moviesres
+                {
+                  if  (index.value(forKey:"id") as! Int ) == mySelectedFilm.FilmId
+                  {
+                    print("enteeeeeeeeeeeer")
+                    do{
+                     managedContext.delete(index)
+                     try  managedContext.save()
+                    }
+                    catch{
+                        
+                        print("error in delete")
+                    }
+                  }
+                    
+                }
+            }
+            catch{
+                
+                print ("error in core Data")
+            }
+            
         }
     }
     override func viewDidLoad() {

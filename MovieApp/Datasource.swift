@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Alamofire
 
-class  Datasource :NSObject, UITableViewDataSource, UITableViewDelegate
+class  Datasource :NSObject ,UITableViewDataSource, UITableViewDelegate
 {
     var myfilmid : Int = 0
     var myTrailers = [MyTrailer]()
@@ -24,6 +24,7 @@ class  Datasource :NSObject, UITableViewDataSource, UITableViewDelegate
         print("init")
 
     }
+    
 func getTrailers ()
 {
     Alamofire.request("https://api.themoviedb.org/3/movie/\(myfilmid)/videos?api_key=54620bd876fc1e4a556204bb2b52b751&language=en-US", encoding: JSONEncoding.default).responseJSON { response in
@@ -58,15 +59,16 @@ func getTrailers ()
     
     }
 
+    
     func numberOfSections(in tableView: UITableView) -> Int {
-        //print("section")
+        print("section")
         self.getTrailers()
         // print("get")
         return 1;
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //print("tttttt\(myTrailers.count)")
+        print("tttttt\(myTrailers.count)")
         return myTrailers.count;
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -78,6 +80,10 @@ func getTrailers ()
         mybutton.addTarget(self, action: #selector(playmyMovie) , for: UIControlEvents.touchUpInside)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("selecttttt")
     }
      
     func playmyMovie (Sender : UIButton!)
