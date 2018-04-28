@@ -5,6 +5,6 @@ target 'MovieApp' do
 
 pod 'SDWebImage', '~> 4.0'
 pod 'Alamofire', '~> 4.7'
-pod ‘youtube-ios-player-helper’, ‘~> 0.1’
+
 
 end
