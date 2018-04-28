@@ -19,121 +19,9 @@ class Home: UICollectionViewController ,MySortProtocol{
    
     override func viewDidLoad() {
         super.viewDidLoad()
-   if isConnectedToNetwork()
-   {
-        Alamofire.request("https://api.themoviedb.org/3/movie/popular?api_key=54620bd876fc1e4a556204bb2b52b751&language=en-US&page=1", encoding: JSONEncoding.default).responseJSON { response in
-            if let json = response.result.value {
-                //print("JSON: \(json)")
-                
-                let myjson = json as! NSDictionary
-                
-                   let myFilmsjson = myjson["results"] as! NSArray
-                
-                   for film in myFilmsjson
-                   {
-                          let echFilmjson = film as! NSDictionary
-                    let comeFilm = FilmData()
-                     comeFilm.FilmId = echFilmjson["id"] as! Int
-                      comeFilm.original_title = echFilmjson["original_title"] as! String
-                    comeFilm.release_Date = echFilmjson["release_date"] as! String
-                    comeFilm.vote_average = echFilmjson["vote_average"] as! Float
-                    comeFilm.overview = echFilmjson["overview"] as! String
-                    let posterimage = echFilmjson["poster_path"] as! String
-                    let totalPathOfImage = "http://image.tmdb.org/t/p/w185"+posterimage
-                    comeFilm.poster_path=totalPathOfImage
-                    self.MyFilms.append(comeFilm)
-                  
-                   }
-            }
-            //1
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            //2
-            let managedContext = appDelegate.persistentContainer.viewContext
-            
-            let fetchRequest1 = NSFetchRequest<NSManagedObject>(entityName: "Movie")
-            let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest1 as! NSFetchRequest<NSFetchRequestResult> )
-            
-            do {
-                try  managedContext.execute(deleteRequest)
-            } catch let error as NSError {
-                print(error)
-            }
-            //3
-            let entity = NSEntityDescription.entity(forEntityName: "Movie", in: managedContext)
-            
-            
-            
-            
-            for value in self.MyFilms{
-                
-                let movieObject  = NSManagedObject(entity: entity!, insertInto: managedContext)
-                //5
-                movieObject.setValue(value.FilmId, forKey: "id")
-                
-                movieObject.setValue(value.original_title, forKey: "originalTitle")
-            
-                movieObject.setValue(value.poster_path, forKey: "posterImage")
-            
-                movieObject.setValue(value.release_Date, forKey: "releaseDate")
-                
-                movieObject.setValue(value.vote_average, forKey: "voteAverage")
-
-                movieObject.setValue(value.overview, forKey: "overview")
-
-                do{
-                    try   managedContext.save()
-                   // print("success")
-                    self.collectionView?.reloadData()
-                    
-                }catch{
-                    
-                    print("Error")
-                }
-            }
-            
-           }
-    
-    
-        }
-        
-        else
-          {
-            print("Not connecting to internet")
-            var moviesres : [NSManagedObject] = [NSManagedObject]()
-            
-            //1
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            
-            //2
-            let managedContext = appDelegate.persistentContainer.viewContext
-            
-            //3
-            let request = NSFetchRequest<NSManagedObject>(entityName: "Movie")
-            
-            do{
-                try  moviesres =  managedContext.fetch(request)
-                for index in moviesres
-                {
-                    let myMovieO = FilmData()
-                    
-                    myMovieO.FilmId=index.value(forKey:"id") as! Int
-                    myMovieO.original_title=index.value(forKey: "originalTitle") as! String
-                    myMovieO.poster_path=index.value(forKey: "posterImage") as! String
-                    myMovieO.release_Date=index.value(forKey: "releaseDate") as!  String
-                    myMovieO.vote_average=index.value(forKey: "voteAverage") as! Float
-                    myMovieO.overview=index.value(forKey: "overview") as! String
-                    self.MyFilms.append(myMovieO)
-                     self.collectionView?.reloadData()
-                    
-                }
-            }catch{
-                
-                print ("error in core Data")
-            }
-            
-        
-          }
-        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        getTotalMovie()
     }
    func updateMovies ( FilmList : Array<FilmData>)
     {
@@ -142,43 +30,23 @@ class Home: UICollectionViewController ,MySortProtocol{
         self.collectionView?.reloadData()
         print("Updated")
     }
-    
-    
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-        
     }
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let mydes = segue.destination as! mySortView
         mydes.myprotocol = self
         print("go success")
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    // MARK: UICollectionViewDataSource
+        // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        //print("numberOfSections")
         return 1
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-       // print(MyFilms.count)
-        return self.MyFilms.count
+                return self.MyFilms.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -224,37 +92,137 @@ class Home: UICollectionViewController ,MySortProtocol{
         
         return (isReachable && !needsConnection)
     }
+    
+    /*************************getMovies*************************/
+    func getTotalMovie()
+    {
+        if isConnectedToNetwork()
+        {
+            Alamofire.request("https://api.themoviedb.org/3/movie/popular?api_key=54620bd876fc1e4a556204bb2b52b751&language=en-US&page=1", encoding: JSONEncoding.default).responseJSON { response in
+                if let json = response.result.value {
+                    //print("JSON: \(json)")
+                    
+                    let myjson = json as! NSDictionary
+                    
+                    let myFilmsjson = myjson["results"] as! NSArray
+                    
+                    for film in myFilmsjson
+                    {
+                        let echFilmjson = film as! NSDictionary
+                        let comeFilm = FilmData()
+                        comeFilm.FilmId = echFilmjson["id"] as! Int
+                        comeFilm.original_title = echFilmjson["original_title"] as! String
+                        comeFilm.release_Date = echFilmjson["release_date"] as! String
+                        comeFilm.vote_average = echFilmjson["vote_average"] as! Float
+                        comeFilm.overview = echFilmjson["overview"] as! String
+                        let posterimage = echFilmjson["poster_path"] as! String
+                        let totalPathOfImage = "http://image.tmdb.org/t/p/w185"+posterimage
+                        comeFilm.poster_path=totalPathOfImage
+                        self.MyFilms.append(comeFilm)
+                        
+                    }
+                }
+                //1
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                //2
+                let managedContext = appDelegate.persistentContainer.viewContext
+                
+                let fetchRequest1 = NSFetchRequest<NSManagedObject>(entityName: "Movie")
+                let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest1 as! NSFetchRequest<NSFetchRequestResult> )
+                
+                do {
+                    try  managedContext.execute(deleteRequest)
+                } catch let error as NSError {
+                    print(error)
+                }
+                //3
+                let entity = NSEntityDescription.entity(forEntityName: "Movie", in: managedContext)
+                
+                
+                
+                
+                for value in self.MyFilms{
+                    
+                    let movieObject  = NSManagedObject(entity: entity!, insertInto: managedContext)
+                    //5
+                    movieObject.setValue(value.FilmId, forKey: "id")
+                    
+                    movieObject.setValue(value.original_title, forKey: "originalTitle")
+                    
+                    movieObject.setValue(value.poster_path, forKey: "posterImage")
+                    
+                    movieObject.setValue(value.release_Date, forKey: "releaseDate")
+                    
+                    movieObject.setValue(value.vote_average, forKey: "voteAverage")
+                    
+                    movieObject.setValue(value.overview, forKey: "overview")
+                    
+                    do{
+                        try   managedContext.save()
+                        // print("success")
+                        self.collectionView?.reloadData()
+                        
+                    }catch{
+                        
+                        print("Error")
+                    }
+                }
+                
+            }
+            
+            
+        }
+            
+        else
+        {
+            print("Not connecting to internet")
+            var moviesres : [NSManagedObject] = [NSManagedObject]()
+            
+            //1
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            
+            //2
+            let managedContext = appDelegate.persistentContainer.viewContext
+            
+            //3
+            let request = NSFetchRequest<NSManagedObject>(entityName: "Movie")
+            
+            do{
+                try  moviesres =  managedContext.fetch(request)
+                if moviesres.count>0
+             {
+                for index in moviesres
+                {
+                    let myMovieO = FilmData()
+                    
+                    myMovieO.FilmId=index.value(forKey:"id") as! Int
+                    myMovieO.original_title=index.value(forKey: "originalTitle") as! String
+                    myMovieO.poster_path=index.value(forKey: "posterImage") as! String
+                    myMovieO.release_Date=index.value(forKey: "releaseDate") as!  String
+                    myMovieO.vote_average=index.value(forKey: "voteAverage") as! Float
+                    myMovieO.overview=index.value(forKey: "overview") as! String
+                    self.MyFilms.append(myMovieO)
+                    self.collectionView?.reloadData()
+                    
+                }
+             }
+               else
+                {
+                    let alert = UIAlertController(title: "Network Connection", message: "it's The first Time App Launch Connect to Internet to get Films", preferredStyle: .alert)
+                    
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true)
+                }
+                
+            }catch{
+                
+                print ("error in core Data")
+            }
+            
+            
+        }
+        
+    }
     /***********************************************************/
-    
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
 
 }

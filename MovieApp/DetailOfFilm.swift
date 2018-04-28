@@ -15,43 +15,50 @@
  */
 import UIKit
 import CoreData
-
+import Alamofire
 class DetailOfFilm: UITableViewController {
     var mySelectedFilm = FilmData()
+    var myTrailers = [MyTrailer]()
+    var myreview = [myReview]()
+
     //var flag = 0
     var moviesres : [NSManagedObject] = [NSManagedObject]()
-    @IBOutlet weak var myReviewTable: UITableView!
     @IBOutlet weak var myfavbutton: UIButton!
-    @IBOutlet weak var mytable: UITableView!
     @IBOutlet weak var myImage: UIImageView!
-    @IBOutlet weak var mydesc: UILabel!
+    @IBOutlet weak var mydesc: UITextView!
     @IBOutlet weak var myVoteAverage: UILabel!
     @IBOutlet weak var myReleaseData: UILabel!
-           @IBOutlet weak var myTitle: UILabel!
+    @IBOutlet weak var myTitle: UILabel!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        myImage.sd_setImage(with: URL(string:mySelectedFilm.poster_path), placeholderImage: UIImage.init(named:"detail.png"))
+        myVoteAverage.text=String(mySelectedFilm.vote_average)
+        myReleaseData.text=mySelectedFilm.release_Date
+        myTitle.text=mySelectedFilm.original_title
+        mydesc.text=mySelectedFilm.overview
+        if( UserDefaults.standard.string(forKey: "favoriteimage\(mySelectedFilm.FilmId)") != nil)
+        {
+            let myfavIconpass : String = UserDefaults.standard.string(forKey: "favoriteimage\(mySelectedFilm.FilmId)")!
+            myfavbutton.setImage(UIImage.init(named: myfavIconpass), for: UIControlState.normal)
+
+        }
+        
+    }
     @IBAction func ClickFavorite(_ sender: UIButton) {
         //1
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         //2
         let managedContext = appDelegate.persistentContainer.viewContext
-        
-//        let fetchRequest1 = NSFetchRequest<NSManagedObject>(entityName: "Movie")
-//        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest1 as! NSFetchRequest<NSFetchRequestResult> )
-//        
-//        do {
-//            try  managedContext.execute(deleteRequest)
-//        } catch let error as NSError {
-//            print(error)
-//        }
-        
         //3
         let entity = NSEntityDescription.entity(forEntityName: "FavoriteFilm", in: managedContext)
         
-            
         
-
+        
+        
         if sender.imageView?.image == UIImage.init(named: "EmptyHeart.png")
         {
-          sender.setImage(UIImage.init(named: "FillHeart.png"), for: UIControlState.normal)
+            sender.setImage(UIImage.init(named: "FillHeart.png"), for: UIControlState.normal)
             //flag = 1
             //add this movie to favorite
             
@@ -80,8 +87,8 @@ class DetailOfFilm: UITableViewController {
             UserDefaults.standard.set("FillHeart.png", forKey: "favoriteimage\(mySelectedFilm.FilmId)")
         }
         else{
-           sender.setImage(UIImage.init(named: "EmptyHeart.png"), for: UIControlState.normal)
-           // flag = 0
+            sender.setImage(UIImage.init(named: "EmptyHeart.png"), for: UIControlState.normal)
+            
             UserDefaults.standard.set("EmptyHeart.png", forKey: "favoriteimage\(mySelectedFilm.FilmId)")
             
             let request = NSFetchRequest<NSManagedObject>(entityName: "FavoriteFilm")
@@ -90,18 +97,18 @@ class DetailOfFilm: UITableViewController {
                 try  moviesres =  managedContext.fetch(request)
                 for index in moviesres
                 {
-                  if  (index.value(forKey:"id") as! Int ) == mySelectedFilm.FilmId
-                  {
-                    print("enteeeeeeeeeeeer")
-                    do{
-                     managedContext.delete(index)
-                     try  managedContext.save()
+                    if  (index.value(forKey:"id") as! Int ) == mySelectedFilm.FilmId
+                    {
+                        print("enteeeeeeeeeeeer")
+                        do{
+                            managedContext.delete(index)
+                            try  managedContext.save()
+                        }
+                        catch{
+                            
+                            print("error in delete")
+                        }
                     }
-                    catch{
-                        
-                        print("error in delete")
-                    }
-                  }
                     
                 }
             }
@@ -112,63 +119,46 @@ class DetailOfFilm: UITableViewController {
             
         }
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        let myDataSource = Datasource(FilmId: mySelectedFilm.FilmId , mytableref : mytable)
-        let myReviewResource = ReviewSource(FilmId: mySelectedFilm.FilmId , mytableref : myReviewTable)
-        mytable.dataSource=myDataSource
-        mytable.delegate=myDataSource
-        myReviewTable.dataSource=myReviewResource
-        myReviewTable.delegate=myReviewResource
+    @IBAction func getTrailerTotal(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "totalTrailerID") as! TrailerTotal
         
-       // mytable.reloadData()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
-                myImage.sd_setImage(with: URL(string:mySelectedFilm.poster_path), placeholderImage: UIImage.init(named:"detail.png"))
-        myVoteAverage.text=String(mySelectedFilm.vote_average)
-        myReleaseData.text=mySelectedFilm.release_Date
-        myTitle.text=mySelectedFilm.original_title
-        mydesc.text=mySelectedFilm.overview
-        if( UserDefaults.standard.string(forKey: "favoriteimage\(mySelectedFilm.FilmId)") != nil)
-        {
-            let myfavIconpass : String = UserDefaults.standard.string(forKey: "favoriteimage\(mySelectedFilm.FilmId)")!
-            myfavbutton.setImage(UIImage.init(named: myfavIconpass), for: UIControlState.normal)
-
-        }
-        
+        vc.FilmId=mySelectedFilm.FilmId
+        navigationController?.pushViewController(vc,animated: true)
     }
+    
+    @IBAction func getReviewsTotal(_ sender: UIButton) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "totalReviewID") as! ReviewsTotal
+        
+        vc.FilmId=mySelectedFilm.FilmId
+        navigationController?.pushViewController(vc,animated: true)
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+        
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 4
-    }
+        
+      
+        return super.tableView(tableView, numberOfRowsInSection: section)
+        
+        }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+                  return super.tableView(tableView, cellForRowAt: indexPath)
+        
     }
-    */
-
+    
+    
+    
+   
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -215,3 +205,4 @@ class DetailOfFilm: UITableViewController {
     */
 
 }
+

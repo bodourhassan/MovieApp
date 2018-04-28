@@ -3,20 +3,24 @@ PODS:
   - SDWebImage (4.3.3):
     - SDWebImage/Core (= 4.3.3)
   - SDWebImage/Core (4.3.3)
+  - youtube-ios-player-helper (0.1.6)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
   - SDWebImage (~> 4.0)
+  - youtube-ios-player-helper (~> 0.1)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
     - SDWebImage
+    - youtube-ios-player-helper
 
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
+  youtube-ios-player-helper: 21ab92db027c7ff86cb17a3843a3f6eafc8158d2
 
-PODFILE CHECKSUM: 050200f9d98b3db0497a575ef14b34b8f5484424
+PODFILE CHECKSUM: f3955e9dd4e0f174c6d2c890e86aea3640d10cf8
 
 COCOAPODS: 1.5.0

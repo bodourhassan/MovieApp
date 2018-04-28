@@ -27,12 +27,12 @@ class mySortView: UIViewController {
         
      getMovieDependOnSort(FilmsPathString: "https://api.themoviedb.org/3/movie/popular?api_key=54620bd876fc1e4a556204bb2b52b751&language=en-US&page=1")
         dismiss(animated: true, completion: nil)
-       // myprotocol?.updateMovies(FilmList: mypopularMovies)
+      
         
     }
     @IBAction func TopRatedClick(_ sender: UIButton) {
           getMovieDependOnSort(FilmsPathString: "https://api.themoviedb.org/3/movie/top_rated?api_key=54620bd876fc1e4a556204bb2b52b751&language=en-US&page=1")
-        //myprotocol?.updateMovies(FilmList: myTopRatedMovies)
+        
         dismiss(animated: true, completion: nil)
     }
     
@@ -44,8 +44,7 @@ class mySortView: UIViewController {
         
             Alamofire.request(FilmsPathString, encoding: JSONEncoding.default).responseJSON { response in
                 if let json = response.result.value {
-                   // print("JSON: \(json)")
-                    print("get json")
+                   
                     let myjson = json as! NSDictionary
                     
                     let myFilmsjson = myjson["results"] as! NSArray
@@ -103,8 +102,6 @@ class mySortView: UIViewController {
                     
                     do{
                         try   managedContext.save()
-                        // print("success")
-                       // self.collectionView?.reloadData()
                         self.myprotocol?.updateMovies(FilmList: MyFilms)
                         
                     }catch{
@@ -155,7 +152,7 @@ class mySortView: UIViewController {
             
             
         }
-       /***********************/
+       
 }
    /***********************check Network Connection******************/
     public func isConnectedToNetwork() -> Bool {
