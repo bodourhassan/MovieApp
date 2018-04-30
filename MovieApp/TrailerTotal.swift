@@ -40,9 +40,11 @@ class TrailerTotal: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "trailcelltotal", for: indexPath)
         let mylabel = cell.viewWithTag(2) as! UILabel
         mylabel.text=myTrailers[indexPath.row].name
-        let mybutton = cell.viewWithTag(1) as! UIButton
+       if let mybutton = cell.viewWithTag(1) as! UIButton?
+       {
         cell.viewWithTag(1)?.tag = (indexPath.section*100)+indexPath.row
         mybutton.addTarget(self, action: #selector(playmyMovie) , for: UIControlEvents.touchUpInside)
+       }
         
         return cell
     }

@@ -56,9 +56,9 @@ class DetailOfFilm: UITableViewController {
         
         
         
-        if sender.imageView?.image == UIImage.init(named: "EmptyHeart.png")
+        if sender.imageView?.image == UIImage.init(named: "HeartE.png")
         {
-            sender.setImage(UIImage.init(named: "FillHeart.png"), for: UIControlState.normal)
+            sender.setImage(UIImage.init(named: "heartE2.png"), for: UIControlState.normal)
             //flag = 1
             //add this movie to favorite
             
@@ -84,12 +84,12 @@ class DetailOfFilm: UITableViewController {
                 
                 print("Error")
             }
-            UserDefaults.standard.set("FillHeart.png", forKey: "favoriteimage\(mySelectedFilm.FilmId)")
+            UserDefaults.standard.set("heartE2.png", forKey: "favoriteimage\(mySelectedFilm.FilmId)")
         }
         else{
-            sender.setImage(UIImage.init(named: "EmptyHeart.png"), for: UIControlState.normal)
+            sender.setImage(UIImage.init(named: "HeartE.png"), for: UIControlState.normal)
             
-            UserDefaults.standard.set("EmptyHeart.png", forKey: "favoriteimage\(mySelectedFilm.FilmId)")
+            UserDefaults.standard.set("HeartE.png", forKey: "favoriteimage\(mySelectedFilm.FilmId)")
             
             let request = NSFetchRequest<NSManagedObject>(entityName: "FavoriteFilm")
             

@@ -41,6 +41,8 @@
 		D46D13662086AF69008B6CE5 /* EmptyHeart.png in Resources */ = {isa = PBXBuildFile; fileRef = D46D13632086AF69008B6CE5 /* EmptyHeart.png */; };
 		D46D13672086AF69008B6CE5 /* FillHeart.png in Resources */ = {isa = PBXBuildFile; fileRef = D46D13642086AF69008B6CE5 /* FillHeart.png */; };
 		D49D71ED208B7AC4009EBBD7 /* myReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49D71EC208B7AC4009EBBD7 /* myReview.swift */; };
+		D4FEAD792097CF8800874FAD /* heartE2.png in Resources */ = {isa = PBXBuildFile; fileRef = D4FEAD782097CF8800874FAD /* heartE2.png */; };
+		D4FEAD7B2097CFF100874FAD /* HeartE.png in Resources */ = {isa = PBXBuildFile; fileRef = D4FEAD7A2097CFF100874FAD /* HeartE.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +105,8 @@
 		D46D13632086AF69008B6CE5 /* EmptyHeart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EmptyHeart.png; sourceTree = "<group>"; };
 		D46D13642086AF69008B6CE5 /* FillHeart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FillHeart.png; sourceTree = "<group>"; };
 		D49D71EC208B7AC4009EBBD7 /* myReview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myReview.swift; sourceTree = "<group>"; };
+		D4FEAD782097CF8800874FAD /* heartE2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heartE2.png; sourceTree = "<group>"; };
+		D4FEAD7A2097CFF100874FAD /* HeartE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HeartE.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +163,8 @@
 		D43BDA542084B488003E2F9A /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D4FEAD7A2097CFF100874FAD /* HeartE.png */,
+				D4FEAD782097CF8800874FAD /* heartE2.png */,
 				3D249263209772E800D0B7A7 /* filmReel.png */,
 				D44FA3C42094AAE000972AB5 /* film.png */,
 				D44FA3C52094AAE000972AB5 /* Jamespeng-Movie-Schedule.ico */,
@@ -354,8 +360,10 @@
 				D43DE46420815F68000F86C9 /* LaunchScreen.storyboard in Resources */,
 				D43BDA5E2084C5B5003E2F9A /* heart-7.png in Resources */,
 				D43BDA602084C732003E2F9A /* film-clap-board.png in Resources */,
+				D4FEAD792097CF8800874FAD /* heartE2.png in Resources */,
 				D44FA3C72094AAE000972AB5 /* Jamespeng-Movie-Schedule.ico in Resources */,
 				D43DE46120815F68000F86C9 /* Assets.xcassets in Resources */,
+				D4FEAD7B2097CFF100874FAD /* HeartE.png in Resources */,
 				D46D135C208627E5008B6CE5 /* dot-more-7.png in Resources */,
 				D46D13672086AF69008B6CE5 /* FillHeart.png in Resources */,
 				D46D13662086AF69008B6CE5 /* EmptyHeart.png in Resources */,

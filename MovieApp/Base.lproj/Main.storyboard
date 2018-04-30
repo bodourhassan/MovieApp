@@ -139,7 +139,7 @@
                                         <rect key="frame" x="0.0" y="86" width="375" height="581"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d4a-pe-lr5" id="Zia-sp-uV7">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="581"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="580"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0Xp-kg-bPr">
@@ -199,9 +199,9 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NXQ-n5-5Zd">
-                                                    <rect key="frame" x="240" y="36" width="38" height="38"/>
+                                                    <rect key="frame" x="228" y="23" width="57" height="59"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" image="EmptyHeart.png">
+                                                    <state key="normal" image="HeartE.png">
                                                         <color key="titleColor" red="0.92549020049999997" green="0.23529411850000001" blue="0.1019607857" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <color key="titleShadowColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                     </state>
@@ -281,7 +281,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="91"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yId-R6-z3T" id="Iff-Uv-mZx">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="91"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dFB-AW-QZw">
@@ -324,7 +324,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="228"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bnb-Aa-Ngn" id="ax1-ML-ueb">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="228"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="227"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="4" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3o1-62-hj6">
@@ -516,6 +516,7 @@
     </scenes>
     <resources>
         <image name="EmptyHeart.png" width="231" height="218"/>
+        <image name="HeartE.png" width="1083" height="1024"/>
         <image name="Jamespeng-Movie-Schedule.ico" width="256" height="256"/>
         <image name="dot-more-7.png" width="30" height="30"/>
         <image name="film-clap-board.png" width="29" height="30"/>
